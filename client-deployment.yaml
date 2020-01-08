@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+# Type of Object
+kind: Deployment
+metadata:
+  # Name of Object
+  name: client-deployment
+spec:
+  # Number of Pods to be created
+  replicas: 1
+  # Tag to select any Pods created
+  selector:
+    matchLabels:
+      component: web
+  template:
+    # Configuration for every Pod created
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: ickyblindman/complex-client
+          ports:
+            - containerPort: 3000
